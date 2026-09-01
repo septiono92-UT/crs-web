@@ -1,0 +1,13 @@
+# Confidential client reports — never commit or ship (also in .dockerignore)
+assets/reports/
+
+# Large throwaway screenshots from audit sessions
+preview*.png
+*-shot.png
+*-full.png
+exp-shot.png
+
+# Local runtime
+*.log
+__pycache__/
+visits.db

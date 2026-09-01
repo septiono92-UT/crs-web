@@ -1,0 +1,11 @@
+.git
+Dockerfile
+.dockerignore
+README.md
+*.md
+# Confidential client PDFs (contain IPs, device lists, passwords) — NOT shipped in the public image.
+# They are crawled for the "Company Experience" section but only shared under NDA on request.
+assets/reports/
+preview*.png
+team-shot.png
+team-full.png

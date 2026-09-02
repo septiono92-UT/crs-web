@@ -40,9 +40,10 @@
   --ease: cubic-bezier(.22,.61,.36,1);
 }
 
-/* Explicit theme control. Light is the default and the override wins;
-   we intentionally do NOT auto-follow the OS dark preference. */
-:root { color-scheme: light; }
+/* Explicit theme control. Dark is the default (set via data-theme="dark" on
+   <html>); the user's saved choice wins. We intentionally do NOT auto-follow
+   the OS preference. */
+:root { color-scheme: light dark; }
 
 * { box-sizing: border-box; }
 

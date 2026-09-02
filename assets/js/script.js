@@ -5,27 +5,27 @@
   // Mark JS as available so reveal animations can enhance (not hide) content.
   document.documentElement.classList.add('js');
 
-  // Theme toggle (dark mode). Persisted in localStorage; light is the explicit
-  // default (we do NOT auto-follow the OS dark preference). A small inline script
-  // is intentionally avoided because the site's CSP blocks inline scripts — the
-  // applied theme is read here, after the stylesheet has loaded.
+  // Theme toggle (dark mode). Persisted in localStorage; DARK is the default
+  // (we do NOT auto-follow the OS light preference). The initial theme is set
+  // statically via data-theme="dark" on <html> so there is no flash of the
+  // light theme before this script runs.
   (function () {
     var KEY = 'crs-theme';
     var root = document.documentElement;
     var btn = document.getElementById('themeToggle');
-    function current() { return root.getAttribute('data-theme'); }
+    function current() { return root.getAttribute('data-theme') || 'dark'; }
     function apply(theme) {
       if (theme === 'dark' || theme === 'light') {
         root.setAttribute('data-theme', theme);
       } else {
-        root.setAttribute('data-theme', 'light'); // explicit light default
+        root.setAttribute('data-theme', 'dark'); // explicit dark default
       }
       if (btn) { btn.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false'); }
     }
-    // initialise from stored choice; default to LIGHT
+    // initialise from stored choice; default to DARK
     var stored = null;
     try { stored = localStorage.getItem(KEY); } catch (e) {}
-    apply(stored || 'light');
+    apply(stored || 'dark');
     if (btn) {
       btn.addEventListener('click', function () {
         var next = (current() === 'dark') ? 'light' : 'dark';

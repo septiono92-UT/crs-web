@@ -52,16 +52,28 @@
   // Mobile nav toggle
   var toggle = document.getElementById('navToggle');
   var links = document.getElementById('navLinks');
+  function closeNav() {
+    if (!links || !links.classList.contains('open')) return;
+    links.classList.remove('open');
+    document.body.classList.remove('nav-open');
+    if (toggle) toggle.setAttribute('aria-expanded', 'false');
+  }
   if (toggle && links) {
     toggle.addEventListener('click', function () {
       var open = links.classList.toggle('open');
+      document.body.classList.toggle('nav-open', open);
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
     links.querySelectorAll('a').forEach(function (a) {
-      a.addEventListener('click', function () {
-        links.classList.remove('open');
-        toggle.setAttribute('aria-expanded', 'false');
-      });
+      a.addEventListener('click', closeNav);
+    });
+    // Escape closes the menu (mobile + desktop keyboard users)
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') { closeNav(); toggle && toggle.focus(); }
+    });
+    // If the viewport grows past the mobile breakpoint, don't leave a stale open menu
+    window.addEventListener('resize', function () {
+      if (window.innerWidth > 720) closeNav();
     });
   }
 

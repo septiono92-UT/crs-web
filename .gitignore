@@ -11,3 +11,4 @@ exp-shot.png
 *.log
 __pycache__/
 visits.db
+.prompts/

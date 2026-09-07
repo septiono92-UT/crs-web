@@ -34,7 +34,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/css/styles.css?v=20260902c" />
+  <link rel="stylesheet" href="/assets/css/design-system.css?v=20260907a" />
 
   <!-- ===== Google Search Console: verify ownership ===== -->
   <!-- Option A (recommended): paste the meta tag GSC gives you, OR -->
@@ -98,7 +98,8 @@
   <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H8l-4 4V5a2 2 0 0 1 2-2h13a2 2 0 0 1 2 2z"/></symbol>
   <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7 0l2-2a5 5 0 0 0-7-7l-1 1M14 11a5 5 0 0 0-7 0l-2 2a5 5 0 0 0 7 7l1-1"/></symbol>
   <symbol id="i-badge" viewBox="0 0 24 24"><path d="M12 3l2.5 5 5.5.8-4 3.9.9 5.5L12 16.5 7.1 18.2 8 12.7 4 8.8 9.5 8z"/></symbol>
-</svg>
+  </svg>
+
   <!-- ===== Header / Nav ===== -->
   <header class="site-header" id="top">
     <div class="container nav">
@@ -112,10 +113,9 @@
       </button>
 
       <nav class="nav-links" id="navLinks">
-        <a href="#services">Services</a>
-        <a href="#experience">Experience</a>
         <a href="#about">About</a>
-        <a href="#approach">Approach</a>
+        <a href="#services">Services</a>
+        <a href="#approach">How we work</a>
         <a href="#team">Team</a>
         <a href="#contact">Contact</a>
         <a href="/id.html" class="lang-switch"><svg class="lang-flag" viewBox="0 0 30 20" aria-hidden="true"><rect width="30" height="20" fill="#fff"/><rect width="30" height="10" fill="#ce1126"/></svg> ID</a>
@@ -133,7 +133,7 @@
     <div class="hero-bg" aria-hidden="true"></div>
     <div class="container hero-inner">
       <div class="hero-copy">
-        <span class="eyebrow">IT Consulting &amp; Contracting</span>
+        <span class="eyebrow">IT Consultant &amp; IT Contractor</span>
         <h1>Smart, reliable <span class="accent">IT</span> that grows with your business.</h1>
         <p class="lead">
           CRS Net helps small and mid-sized companies design, secure and run their
@@ -141,8 +141,11 @@
           no-nonsense approach.
         </p>
         <div class="hero-cta">
-          <a href="#contact" class="btn btn-primary">Talk to a consultant</a>
-          <a href="#services" class="btn btn-ghost">See what we do</a>
+          <a href="https://wa.me/6282112077181" target="_blank" rel="noopener" class="btn btn-primary">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.02h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.16 8.16 0 0 1-1.26-4.36c0-4.54 3.7-8.23 8.24-8.23 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.7 8.23-8.24 8.23zm4.52-6.16c-.25-.13-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.13-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.47c-.16 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.13.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.47-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.16-.48-.29z"/></svg>
+            Chat on WhatsApp
+          </a>
+          <a href="#contact" class="btn btn-ghost">Contact us</a>
         </div>
         <div class="hero-meta">
           <div><strong>13+</strong><span>years in IT &amp; engineering</span></div>
@@ -150,25 +153,50 @@
           <div><strong>24/7</strong><span>priority support</span></div>
         </div>
       </div>
-
-      <div class="hero-card" aria-hidden="true">
-        <div class="hero-card-logo">
-          <img src="/assets/img/CRS_logo.png" alt="CRS Net logo" />
-        </div>
-        <div class="hero-card-lines">
-          <span></span><span></span><span></span><span></span>
-        </div>
-      </div>
     </div>
   </section>
 
-  <!-- ===== Clients / trust strip ===== -->
-  <section class="strip">
-    <div class="container strip-inner">
-      <p>Trusted by teams across</p>
-      <ul class="strip-tags">
-        <li>Mining</li><li>Construction</li><li>Automotive</li><li>AVL &amp; Integration</li><li>Manufacturing</li>
-      </ul>
+  <!-- ===== About ===== -->
+  <section class="section section-alt" id="about">
+    <div class="container about-inner">
+      <div class="about-copy">
+        <span class="eyebrow">About CRS Net</span>
+        <h2>Experience you can lean on</h2>
+        <p>
+          CRS Net — <strong>PT Cipta Raksa Sadaya</strong> — is an independent IT
+          consulting and contracting practice built on <strong>13+ years</strong> of
+          field experience. It is led by founder <strong>Tio Septiono</strong>, whose
+          career spans mechatronics, automotive IT, systems engineering and business
+          development — from Mercedes-Benz dealerships to power-plant projects and
+          cross-Southeast-Asia deployments.
+        </p>
+        <p>
+          The focus has always been the same: keep technology dependable so the
+          business can move. Today CRS Net pairs hands-on engineering with clear,
+          honest advice for mining, construction and growing companies.
+        </p>
+        <ul class="badges" aria-label="Founder credentials">
+          <li>
+            <a class="badge badge-soft" href="https://www.linkedin.com/in/septiono/" target="_blank" rel="noopener">
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.5c0-1.3-.02-3-1.85-3-1.85 0-2.13 1.45-2.13 2.94V21H9z"/></svg>
+              LinkedIn
+            </a>
+          </li>
+          <li>
+            <a class="badge badge-soft" href="https://www.credly.com/users/septiono" target="_blank" rel="noopener">
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 3 7v10l9 5 9-5V7zm0 2.3 6.5 3.6L12 11.5 5.5 7.9zm-7 5.2 6.5 3.6v3.4L5 14.5zm14 3.4-6.5 3.6v-3.4l6.5-3.6z"/></svg>
+              Credly certificates
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="about-stats">
+        <div class="stat"><strong>13+</strong><span>years experience</span></div>
+        <div class="stat"><strong>8</strong><span>roles delivered</span></div>
+        <div class="stat"><strong>3</strong><span>languages supported</span></div>
+        <div class="stat"><strong>100%</strong><span>independent advice</span></div>
+      </div>
     </div>
   </section>
 
@@ -183,161 +211,47 @@
 
       <div class="grid grid-3">
         <article class="card">
+          <div class="card-icon"><svg class="icon" aria-hidden="true"><use href="#i-chart"/></svg></div>
+          <h3>IT Consulting &amp; Planning</h3>
+          <p>Right-sized roadmaps, budgeting and vendor guidance — honest advice that keeps technology aligned with the business.</p>
+        </article>
+        <article class="card">
           <div class="card-icon"><svg class="icon" aria-hidden="true"><use href="#i-network"/></svg></div>
-          <h3>Network &amp; Infrastructure</h3>
-          <p>LAN/WLAN design, routing &amp; switching, VPN, and reliable on-prem or hybrid setups that just work.</p>
+          <h3>Network Infrastructure &amp; Mikrotik</h3>
+          <p>LAN/WLAN design, Mikrotik routing and switching, VPN and fail-over — networks that stay up when it matters.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon"><svg class="icon" aria-hidden="true"><use href="#i-tools"/></svg></div>
+          <h3>IT Contracting &amp; Field Support</h3>
+          <p>On-site engineering and field support for projects and daily operations — from installations to troubleshooting.</p>
         </article>
         <article class="card">
           <div class="card-icon"><svg class="icon" aria-hidden="true"><use href="#i-cloud"/></svg></div>
-          <h3>Cloud &amp; Migration</h3>
-          <p>Move workloads to the cloud safely — AWS, and modern platforms — with minimal downtime.</p>
+          <h3>Cloud &amp; Virtualization</h3>
+          <p>Move workloads to the cloud safely — VPS, virtualization and modern platforms — with minimal downtime.</p>
         </article>
         <article class="card">
           <div class="card-icon"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg></div>
-          <h3>Security &amp; Compliance</h3>
-          <p>Hardening, endpoint protection, backups and clear policies to keep your data safe and auditable.</p>
-        </article>
-        <article class="card">
-          <div class="card-icon"><svg class="icon" aria-hidden="true"><use href="#i-integration"/></svg></div>
-          <h3>Systems Integration</h3>
-          <p>Connect ERP, AVL, CCTV and building systems into one manageable, well-documented environment.</p>
+          <h3>Security &amp; Backup</h3>
+          <p>Hardening, endpoint protection, firewalling and verified backups that keep your data safe and recoverable.</p>
         </article>
         <article class="card">
           <div class="card-icon"><svg class="icon" aria-hidden="true"><use href="#i-support"/></svg></div>
-          <h3>IT Support &amp; Helpdesk</h3>
-          <p>Responsive support for your team and users, with SLAs for the things that can't wait.</p>
-        </article>
-        <article class="card">
-          <div class="card-icon"><svg class="icon" aria-hidden="true"><use href="#i-chart"/></svg></div>
-          <h3>Strategy &amp; Advisory</h3>
-          <p>Right-sized roadmaps, budgeting and vendor guidance so technology supports the business.</p>
+          <h3>Managed Services &amp; Maintenance</h3>
+          <p>Ongoing monitoring, maintenance and helpdesk with SLAs — so someone always has your back.</p>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- ===== Company Experience (from crawled IT reports) ===== -->
-  <section class="section experience" id="experience">
-    <div class="container">
-      <div class="section-head">
-        <span class="eyebrow">Proven track record</span>
-        <h2>Backed by 62 field reports</h2>
-        <p class="section-sub">
-          Since <strong>March 2021</strong>, CRS has delivered continuous monthly IT &amp; networking
-          operations across multiple client sites — including a dedicated infrastructure assessment &amp;
-          troubleshooting audit. Every engagement is documented in a verified report.
-        </p>
-      </div>
-
-      <div class="track-record">
-        <div class="tr-item"><strong>62</strong><span>reports (61 monthly + 1 audit)</span></div>
-        <div class="tr-item"><strong>5+ yrs</strong><span>continuous coverage</span></div>
-        <div class="tr-item"><strong>6+</strong><span>client sites served</span></div>
-        <div class="tr-item"><strong>100%</strong><span>documented &amp; signed off</span></div>
-      </div>
-
-      <div class="grid grid-3 exp-grid">
-        <article class="exp-card">
-          <div class="card-icon"><svg class="icon" aria-hidden="true"><use href="#i-network"/></svg></div>
-          <h3>Network &amp; Infrastructure</h3>
-          <p class="exp-stat">62 / 62 reports</p>
-          <p>Mikrotik RB5009 gateways, routing &amp; rerouting, fail-over and load balancing across every client site.</p>
-        </article>
-        <article class="exp-card">
-          <div class="card-icon"><svg class="icon" aria-hidden="true"><use href="#i-cloud"/></svg></div>
-          <h3>Cloud &amp; Remote Access</h3>
-          <p class="exp-stat">57 reports</p>
-          <p>Site-to-site VPN (WireGuard), VPS, Cloudflare and cPanel — secure remote connectivity for SAP &amp; HRIS.</p>
-        </article>
-        <article class="exp-card">
-          <div class="card-icon"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg></div>
-          <h3>Security &amp; CCTV</h3>
-          <p class="exp-stat">62 / 62 reports</p>
-          <p>Hikvision NVR/CCTV, credential &amp; password management, firewalling and attack-surface reduction.</p>
-        </article>
-        <article class="exp-card">
-          <div class="card-icon"><svg class="icon" aria-hidden="true"><use href="#i-integration"/></svg></div>
-          <h3>Servers &amp; Systems</h3>
-          <p class="exp-stat">62 / 62 reports</p>
-          <p>On-prem &amp; VPS servers, Synology storage, SQL databases, NTP and backup operations.</p>
-        </article>
-        <article class="exp-card">
-          <div class="card-icon"><svg class="icon" aria-hidden="true"><use href="#i-wifi"/></svg></div>
-          <h3>WiFi &amp; Connectivity</h3>
-          <p class="exp-stat">55 reports</p>
-          <p>UniFi controller, WLAN and hotspot rollouts, internet fail-over for critical operational apps.</p>
-        </article>
-        <article class="exp-card">
-          <div class="card-icon"><svg class="icon" aria-hidden="true"><use href="#i-desktop"/></svg></div>
-          <h3>End-User &amp; Support</h3>
-          <p class="exp-stat">62 / 62 reports</p>
-          <p>PC installation, reinstall &amp; maintenance, IPPBX/email and helpdesk across all sites — monthly.</p>
-        </article>
-      </div>
-
-      <div class="audit-callout">
-        <div class="audit-ico"><svg class="icon" aria-hidden="true"><use href="#i-tools"/></svg></div>
-        <div class="audit-body">
-          <span class="audit-tag">Featured engagement</span>
-          <h3>Infrastructure Assessment &amp; Troubleshooting Audit</h3>
-          <p>
-            A dedicated, one-off IT audit of a gold mining holding HQ in Jakarta — beyond the monthly reporting cycle.
-            Covers end-to-end network &amp; systems assessment, root-cause troubleshooting, and a prioritized
-            remediation roadmap. Delivered as a standalone report alongside the 61 monthly reports.
-          </p>
-        </div>
-      </div>
-
-      <p class="exp-note">
-        Client sites: <strong>BMAP — Central Java</strong>, <strong>PEI — Jakarta</strong>,
-        <strong>HWR — North Sulawesi</strong>, <strong>DMC — West Sumatra</strong>,
-        <strong>House of Worship — Jakarta</strong>, and <strong>Padel — South Jakarta</strong>.
-        Full reports are provided on request and under NDA — they contain confidential network details.
-        <a href="#contact">Request a sample report →</a>
-      </p>
-    </div>
-  </section>
-
-  <!-- ===== About ===== -->
-  <section class="section section-alt" id="about">
-    <div class="container about-inner">
-      <div class="about-copy">
-        <span class="eyebrow">About CRS Net</span>
-        <h2>Experience you can lean on</h2>
-        <p>
-          CRS Net is led by <strong>Tio Septiono</strong>, an IT professional with over
-          13 years across mechatronics, automotive IT, systems engineering and business
-          development. From Mercedes-Benz dealerships to power-plant projects and
-          cross-Southeast-Asia deployments, the focus has always been the same: keep
-          technology dependable so the business can move.
-        </p>
-        <p>
-          Today CRS Net delivers independent consulting for mining, construction and
-          growing companies — pairing hands-on engineering with clear, honest advice.
-        </p>
-        <ul class="badges">
-          <li><a href="https://www.linkedin.com/in/septiono/" target="_blank" rel="noopener">LinkedIn</a></li>
-          <li><a href="https://www.credly.com/users/septiono" target="_blank" rel="noopener">Credly</a></li>
-        </ul>
-      </div>
-
-      <div class="about-stats">
-        <div class="stat"><strong>13+</strong><span>years experience</span></div>
-        <div class="stat"><strong>8</strong><span>roles delivered</span></div>
-        <div class="stat"><strong>3</strong><span>languages supported</span></div>
-        <div class="stat"><strong>100%</strong><span>independent advice</span></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== Approach ===== -->
-  <section class="section" id="approach">
+  <!-- ===== How We Work ===== -->
+  <section class="section section-alt" id="approach">
     <div class="container">
       <div class="section-head">
         <span class="eyebrow">How we work</span>
         <h2>A simple, transparent process</h2>
       </div>
-      <div class="grid grid-4 steps">
+      <div class="grid grid-4">
         <div class="step"><span class="step-n">01</span><h3>Listen</h3><p>Understand your goals, constraints and current setup.</p></div>
         <div class="step"><span class="step-n">02</span><h3>Plan</h3><p>A clear, prioritized roadmap with real numbers.</p></div>
         <div class="step"><span class="step-n">03</span><h3>Deliver</h3><p>Implement cleanly, with testing and documentation.</p></div>
@@ -347,7 +261,7 @@
   </section>
 
   <!-- ===== Meet Our Team ===== -->
-  <section class="section section-alt" id="team">
+  <section class="section" id="team">
     <div class="container">
       <div class="section-head">
         <span class="eyebrow">The people behind CRS Net</span>
@@ -362,7 +276,7 @@
             <img src="/assets/img/Septiono.jpg" alt="Septiono — Business Development" loading="lazy" />
           </div>
           <h3 class="team-name">Septiono</h3>
-          <p class="team-role">Business Development</p>
+          <p class="team-role badge badge-soft">Business Development</p>
           <p class="team-bio">Connects your business goals to the right technology. 13+ years across IT, engineering and client partnerships — the face of CRS Net for new clients.</p>
           <div class="team-links">
             <a href="https://www.linkedin.com/in/septiono/" target="_blank" rel="noopener" aria-label="Septiono on LinkedIn">
@@ -378,11 +292,9 @@
 
         <!-- Yulianto -->
         <article class="team-card">
-          <div class="team-photo">
-            <img src="/assets/img/yulianto.png?v=20260826" alt="Yulianto — DevOps" loading="lazy" />
-          </div>
+          <div class="team-monogram" aria-hidden="true">Y</div>
           <h3 class="team-name">Yulianto</h3>
-          <p class="team-role">DevOps</p>
+          <p class="team-role badge badge-soft">DevOps</p>
           <p class="team-bio">Keeps infrastructure reliable and automated. CI/CD, containers, cloud and monitoring — so your systems stay fast, stable and easy to ship.</p>
           <div class="team-links">
             <a href="https://www.linkedin.com/in/yulianto-yulianto-54a90a1ba/" target="_blank" rel="noopener" aria-label="Yulianto on LinkedIn">
@@ -402,7 +314,7 @@
             <img src="/assets/img/Mentari.jpg" alt="Mentari — Finance &amp; Administration" loading="lazy" />
           </div>
           <h3 class="team-name">Mentari</h3>
-          <p class="team-role">Finance &amp; Administration</p>
+          <p class="team-role badge badge-soft">Finance &amp; Administration</p>
           <p class="team-bio">Runs the business side — invoicing, contracts and operations — so engagements stay clear, fair and on track from quote to handover.</p>
           <div class="team-links">
             <a href="https://www.linkedin.com/in/mentari-cinta-kasih-a612b3213/" target="_blank" rel="noopener" aria-label="Mentari on LinkedIn">
@@ -471,9 +383,10 @@
         <p>Independent IT consulting &amp; contracting for growing businesses.</p>
       </div>
       <nav class="footer-links">
-        <a href="#services">Services</a>
         <a href="#about">About</a>
-        <a href="#approach">Approach</a>
+        <a href="#services">Services</a>
+        <a href="#approach">How we work</a>
+        <a href="#team">Team</a>
         <a href="#contact">Contact</a>
       </nav>
       <div class="footer-contact">

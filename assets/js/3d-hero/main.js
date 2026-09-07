@@ -1,4 +1,4 @@
-import * as THREE from './vendor/three.module.js';
+import * as THREE from './vendor/three.module.min.js';
 
 const BRAND_COBALT = 0x1f5eff;
 const BRAND_ELECTRIC = 0x4d82ff;

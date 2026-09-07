@@ -5,6 +5,7 @@ const http = require('http');
 
 const url = process.argv[2] || 'http://127.0.0.1:8080/';
 const port = parseInt(process.argv[3] || '9343', 10);
+const win = process.argv[4] || '1440,900';
 
 function getJSON(path) {
   return new Promise((res, rej) => {
@@ -30,7 +31,7 @@ class CDP {
 (async () => {
   const chr = spawn('chromium-browser', [
     '--headless=new', '--no-sandbox', '--disable-gpu', '--disable-extensions',
-    `--remote-debugging-port=${port}`, '--window-size=1440,900', url
+    `--remote-debugging-port=${port}`, `--window-size=${win}`, url
   ], { stdio: 'ignore' });
 
   await sleep(9000); // load + 3D settle

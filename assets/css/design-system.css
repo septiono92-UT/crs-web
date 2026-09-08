@@ -389,16 +389,107 @@ html[data-theme="dark"] .hero-bg::before {
 .step h3 { font-size: 1.05rem; margin-bottom: 6px; }
 .step p { color: var(--slate); font-size: .94rem; margin: 0; }
 
-/* ---------- Team ---------- */
+/* 3D visual panel (assets/js/3d-approach/main.js mounts the canvas here).
+   Reserved-space box (aspect-ratio) so nothing shifts after paint: CLS 0.
+   The gradient + blueprint grid is the always-on no-WebGL fallback. */
+.approach-inner { display: grid; gap: var(--space-3); }
+.approach-steps { display: grid; grid-template-columns: 1fr; gap: var(--space-2); }
+.approach-3d {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    radial-gradient(120% 95% at 78% 6%, rgba(77,130,255,.10), transparent 55%),
+    radial-gradient(95% 80% at 12% 96%, rgba(0,194,224,.09), transparent 60%),
+    var(--surface);
+}
+.approach-3d::before {
+  content: ""; position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(31,94,255,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(31,94,255,.05) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(ellipse 85% 80% at 50% 45%, #000 30%, transparent 78%);
+  -webkit-mask-image: radial-gradient(ellipse 85% 80% at 50% 45%, #000 30%, transparent 78%);
+}
+html[data-theme="dark"] .approach-3d::before {
+  background-image:
+    linear-gradient(rgba(116,168,255,.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(116,168,255,.06) 1px, transparent 1px);
+}
+.approach-3d canvas {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%; display: block;
+}
+@media (min-width: 721px) {
+  .approach-steps { grid-template-columns: 1fr 1fr; }
+  .approach-3d { aspect-ratio: 16 / 10; }
+}
+@media (min-width: 921px) {
+  /* Step list beside the 3D visual: numbered rows on the left, scene right. */
+  .approach-inner {
+    grid-template-columns: 1.08fr .92fr;
+    gap: var(--space-6);
+    align-items: center;
+  }
+  .approach-steps { grid-template-columns: 1fr; }
+  .approach-steps .step {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    column-gap: var(--space-2);
+    align-items: center;
+  }
+  .approach-steps .step-n { margin-bottom: 0; grid-row: 1 / span 2; }
+  .approach-3d { aspect-ratio: 1 / 1; max-height: 540px; }
+}
+
+/* ---------- Team (interactive 3D tilt cards) ----------
+   Fine-pointer enhancement driven by assets/js/3d-team/main.js:
+   --rx/--ry tilt the card, --shx/--shy drift a cast shadow opposite the
+   tilt. Depth layers are translateZ inside transform-style: preserve-3d.
+   All motion is transform/opacity only — layout is never animated, so
+   CLS stays 0. Tilt is disabled on touch/coarse pointers and for
+   prefers-reduced-motion (see guards at the bottom of this sheet). */
 .team-grid { margin-top: var(--space-1); }
 .team-card {
+  --rx: 0deg; --ry: 0deg; --shx: 0px; --shy: 0px;
+  --tilt-shadow: rgba(11,21,38,.32);
+  position: relative;
+  transform: perspective(1100px) rotateX(var(--rx)) rotateY(var(--ry));
+  transform-style: preserve-3d;
   background: var(--surface); border: 1px solid var(--line);
   border-radius: var(--radius); padding: var(--space-3);
   text-align: center; box-shadow: var(--shadow-sm);
-  transition: transform .2s var(--ease), box-shadow .25s var(--ease),
+  transition: transform .5s var(--ease), box-shadow .3s var(--ease),
               border-color .25s, background-color .35s var(--ease);
 }
-.team-card:hover { transform: translateY(-4px); border-color: var(--brand-line); box-shadow: var(--shadow-md); }
+/* Re-declares the full transform so the older styles.css hover lift
+   (id.html) can never fight the tilt matrix. */
+.team-card:hover {
+  transform: perspective(1100px) rotateX(var(--rx)) rotateY(var(--ry));
+  border-color: var(--brand-line); box-shadow: var(--shadow-md);
+}
+.team-card.is-tilting {
+  transition-duration: .08s, .3s, .25s, .35s;
+  will-change: transform;
+}
+/* Cast shadow on a plane behind the card (negative Z in the preserve-3d
+   context): transform-only movement, faded in while tilting. */
+.team-card::after {
+  content: ""; position: absolute;
+  left: -7%; right: -7%; bottom: -16px; height: 44px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse closest-side, var(--tilt-shadow), rgba(11,21,38,0));
+  transform: translate3d(var(--shx), var(--shy), -52px);
+  opacity: 0;
+  transition: opacity .35s var(--ease);
+  pointer-events: none;
+}
+.team-card.is-tilting::after { opacity: 1; }
+html[data-theme="dark"] .team-card { --tilt-shadow: rgba(0,0,0,.55); }
 .team-photo {
   width: 128px; height: 128px; margin: 0 auto var(--space-2);
   border-radius: 50%; overflow: hidden; border: 3px solid transparent;
@@ -406,6 +497,7 @@ html[data-theme="dark"] .hero-bg::before {
     linear-gradient(var(--surface), var(--surface)) padding-box,
     var(--grad-brand) border-box;
   box-shadow: 0 8px 24px rgba(31,94,255,.18);
+  transform: translateZ(46px);
 }
 .team-photo img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
 .team-monogram {
@@ -415,11 +507,12 @@ html[data-theme="dark"] .hero-bg::before {
   font-family: 'Sora', sans-serif; font-weight: 800; font-size: 2.5rem;
   color: var(--on-brand); background: var(--grad-brand);
   box-shadow: 0 8px 24px rgba(31,94,255,.18);
+  transform: translateZ(46px);
 }
-.team-name { font-size: 1.25rem; margin: 0 0 4px; }
-.team-role { margin: 0 0 var(--space-2); text-transform: uppercase; letter-spacing: .06em; }
-.team-bio { color: var(--slate); font-size: .95rem; margin: 0 0 var(--space-3); }
-.team-links { display: flex; gap: var(--space-1); justify-content: center; }
+.team-name { font-size: 1.25rem; margin: 0 0 4px; transform: translateZ(18px); }
+.team-role { margin: 0 0 var(--space-2); text-transform: uppercase; letter-spacing: .06em; transform: translateZ(26px); }
+.team-bio { color: var(--slate); font-size: .95rem; margin: 0 0 var(--space-3); transform: translateZ(12px); }
+.team-links { display: flex; gap: var(--space-1); justify-content: center; transform: translateZ(32px); }
 .team-links a {
   display: inline-flex; align-items: center; justify-content: center; gap: var(--space-1);
   min-height: var(--tap); padding: var(--space-1) var(--space-2);
@@ -590,4 +683,7 @@ html.js .reveal.in { opacity: 1; transform: none; }
   * { scroll-behavior: auto !important; }
   .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
   .btn:hover, .card:hover, .team-card:hover, .step:hover, .wa-fab:hover { transform: none; }
+  /* Team tilt: no transition, no cast-shadow fx (JS never attaches either). */
+  .team-card, .team-card.is-tilting { transition: none; }
+  .team-card::after { display: none; }
 }

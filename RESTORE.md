@@ -158,7 +158,26 @@ Current stack (verified end-to-end 2026-09-09):
 - The old zones (crs-net.web.id, septiono.my.id) still exist in the Cloudflare account
   but have NO DNS records since the reinstall — recreate redirects there if wanted.
 
-To restore again on a fresh box: clone this repo, `bash scripts/deploy.sh`, install
+## UPDATE 2026-09-09 (later) — legacy zones now 301 to crs.web.id
+All 5 legacy hostnames resolve through the same tunnel and redirect at the origin:
+- DNS (proxied CNAME → `d7dc47c8-e01c-4161-bb24-ddd82173cd48.cfargotunnel.com`):
+  crs-net.web.id, www.crs-net.web.id, web.crs-net.web.id (zone crs-net.web.id
+  = `692f18401c232d7a872d3fc1d2c17950`); septiono.my.id, www.septiono.my.id
+  (zone septiono.my.id = `6024703eb3e49ff32ec7839d593673a2`)
+- Tunnel ingress (in `~/.cloudflared/config.yml`) lists all 5 legacy hostnames → :8080
+- nginx `default_server` block 301s every legacy Host → https://crs.web.id (path+query kept)
+- nginx gotcha learned the hard way: the main server block MUST carry an explicit
+  `server_name crs.web.id` — a wildcard `_` plus `default_server` catch-all on the
+  redirect block turns the canonical host into an infinite self-redirect loop.
+- cloudflared login cert is per-zone scoped: three certs were used (crs.web.id,
+  crs-net.web.id, septiono.my.id); backups in `~/.cloudflared/cert.pem.*-backup`.
+  DNS record writes can also be done via the apiToken embedded in each cert.pem.
+- Old Cloudflare Redirect Rules (→ web.crs-net.web.id) still exist at the edge in
+  both legacy zones (tunnel certs can't edit rulesets): crs-net.web.id/septiono.my.id
+  take a two-hop 301 chain (edge → web.crs-net.web.id → crs.web.id). Harmless; delete
+  the edge rules in the dashboard for a single hop.
+
+## To restore again on a fresh box: clone this repo, `bash scripts/deploy.sh`, install
 cloudflared, `cloudflared tunnel login`, recreate the tunnel (or copy credentials back),
 rewrite the tunnel ID in `~/.cloudflared/config.yml`, `cloudflared tunnel route dns crsweb crs.web.id`
 (+ www), enable the systemd user unit.

@@ -4,7 +4,7 @@ Purpose: after reinstalling the VPS and/or Hermes Agent, rebuild the entire
 website stack from this repository. Written for a future Hermes session (or a
 human) with zero prior context.
 
-Live site: https://web.crs-net.web.id (+ `/id.html` Indonesian mirror)
+Live site: https://crs.web.id (+ `/id.html` Indonesian mirror)
 Repo: https://github.com/septiono92-UT/crs-web (public)
 
 ---
@@ -139,3 +139,26 @@ curl -s -o /dev/null -w "%{http_code}\n" https://web.crs-net.web.id/            
   dark default · 3D: hero globe + approach scene (2 WebGL contexts) + team tilt cards
 - Lighthouse-equivalent (CDP probes): LCP ~0.6 s, CLS 0, ~348 KB total transfer
 - Git history: main = live; new-site = build branch
+
+---
+
+## UPDATE 2026-09-09 — VPS rebuilt; new zone crs.web.id is now canonical
+After the VPS reinstall, the site was restored from this repo onto a fresh box and
+re-homed to a NEW Cloudflare zone: **crs.web.id** (apex is canonical; www 301s to apex
+at the nginx layer). All canonical/hreflang/og/JSON-LD/title/footer/sitemap references
+in index.html, id.html, sitemap.xml, nginx.conf now point to crs.web.id.
+
+Current stack (verified end-to-end 2026-09-09):
+- Container `crs-net` (crs-net-web:main) on 127.0.0.1:8080, counter volume `crsnet-counter`
+- Tunnel **crsweb** id `d7dc47c8-e01c-4161-bb24-ddd82173cd48`, cert + credentials in
+  `~/.cloudflared/`, ingress config `~/.cloudflared/config.yml` (crs.web.id + www → :8080)
+- Runs as systemd **user** service `cloudflared-tunnel.service` (unit file in
+  `~/.config/systemd/user/`), enabled at boot; cloudflared binary at `~/.local/bin/cloudflared`
+- DNS: CNAMEs crs.web.id + www.crs.web.id → tunnel (created via `cloudflared tunnel route dns`)
+- The old zones (crs-net.web.id, septiono.my.id) still exist in the Cloudflare account
+  but have NO DNS records since the reinstall — recreate redirects there if wanted.
+
+To restore again on a fresh box: clone this repo, `bash scripts/deploy.sh`, install
+cloudflared, `cloudflared tunnel login`, recreate the tunnel (or copy credentials back),
+rewrite the tunnel ID in `~/.cloudflared/config.yml`, `cloudflared tunnel route dns crsweb crs.web.id`
+(+ www), enable the systemd user unit.

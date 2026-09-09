@@ -172,10 +172,10 @@ All 5 legacy hostnames resolve through the same tunnel and redirect at the origi
 - cloudflared login cert is per-zone scoped: three certs were used (crs.web.id,
   crs-net.web.id, septiono.my.id); backups in `~/.cloudflared/cert.pem.*-backup`.
   DNS record writes can also be done via the apiToken embedded in each cert.pem.
-- Old Cloudflare Redirect Rules (→ web.crs-net.web.id) still exist at the edge in
-  both legacy zones (tunnel certs can't edit rulesets): crs-net.web.id/septiono.my.id
-  take a two-hop 301 chain (edge → web.crs-net.web.id → crs.web.id). Harmless; delete
-  the edge rules in the dashboard for a single hop.
+- Old Cloudflare Redirect Rules (→ web.crs-net.web.id) were DELETED from both legacy
+  zones on 2026-09-09 (via dashboard). Legacy hosts now take a SINGLE 301 hop at the
+  origin: <legacy-host> → https://crs.web.id (path + query preserved). Verified first-hop
+  Location headers show crs.web.id directly for all 5 hostnames.
 
 ## To restore again on a fresh box: clone this repo, `bash scripts/deploy.sh`, install
 cloudflared, `cloudflared tunnel login`, recreate the tunnel (or copy credentials back),

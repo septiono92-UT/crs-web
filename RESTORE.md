@@ -181,3 +181,36 @@ All 5 legacy hostnames resolve through the same tunnel and redirect at the origi
 cloudflared, `cloudflared tunnel login`, recreate the tunnel (or copy credentials back),
 rewrite the tunnel ID in `~/.cloudflared/config.yml`, `cloudflared tunnel route dns crsweb crs.web.id`
 (+ www), enable the systemd user unit.
+
+## UPDATE 2026-09-19 — UI effects layer (glass, counters, parallax, cursor, WA-first CTA)
+Added on top of the design system and deployed via `bash scripts/deploy.sh`:
+
+- `assets/js/ui-effects.js` (new, deferred): animated counters (`[data-count]` +
+  `[data-suffix]`, IntersectionObserver, easeOutCubic; reduce-motion → instant),
+  light parallax (`[data-parallax]` lag factor + `[data-parallax-max]` px cap,
+  rAF-throttled, baseline captured at init so pages load with zero offset), and
+  cursor FX (dot + eased ring + soft glow trail; fine pointers only; native cursor
+  kept inside form fields; fully skipped for touch/reduced-motion).
+- `assets/css/design-system.css` — appended "UI Effects layer" block: glass tokens +
+  frosted surfaces for `.card/.step/.stat/.exp-card/.contact-form/.cta-card` (inside
+  `@supports (backdrop-filter)`; opaque fallback otherwise). Team cards frost via a
+  `::before` layer — a backdrop-filter directly on the card would flatten the
+  `preserve-3d` tilt. Also: ambient section glows, WhatsApp-first CTA band
+  (`.cta-band` / `.cta-card`), `.btn-wa` green button variant, wa-fab pulse, cursor
+  styles. Selectors carry `html[data-theme]` so they outrank the legacy `styles.css`
+  theme overrides loaded earlier on id.html.
+- `index.html` + `id.html`: hero WA buttons → `.btn-wa` with prefilled `wa.me` text
+  (`?text=…`), WhatsApp-first hero/nav/CTA/FAB, `data-count` on hero-meta + about stats
+  (id also track-record), `data-parallax` on `.hero-bg`/`.hero-copy`/`.approach-3d`,
+  new WhatsApp CTA band between `#team` and `#contact`, `ui-effects.js` included,
+  design-system bumped to `?v=20260919a`.
+- `scripts/verify-ui-effects.js` (new): CDP QA for counters/parallax/cursor/page
+  errors + screenshots. Run: `node scripts/verify-ui-effects.js <url> [port]
+  [--shot-dir=dir]`. Uses Chrome for Testing at
+  `~/.cache/ms-playwright/chromium-1234/chrome-linux64/chrome` with
+  `--blink-settings=…pointerType=4…` to emulate a fine pointer. `verify-3d.js` still
+  passes (tilt + WebGL scenes intact, CLS 0).
+
+Known pre-existing issue (NOT caused by this change): the CSP in `nginx.conf` blocks
+the inline GA4 config snippet and the Cloudflare Insights beacon on the live site
+(`script-src` lacks `'unsafe-inline'`/hashes). Fix separately if GA4 data matters.

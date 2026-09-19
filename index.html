@@ -34,7 +34,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/css/design-system.css?v=20260907c" />
+  <link rel="stylesheet" href="/assets/css/design-system.css?v=20260919a" />
 
   <!-- ===== Google Search Console: verify ownership ===== -->
   <!-- Option A (recommended): paste the meta tag GSC gives you, OR -->
@@ -130,10 +130,10 @@
 
   <!-- ===== Hero ===== -->
   <section class="hero">
-    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-bg" data-parallax="0.22" data-parallax-max="90" aria-hidden="true"></div>
     <div class="hero-3d" aria-hidden="true"></div>
     <div class="container hero-inner">
-      <div class="hero-copy">
+      <div class="hero-copy" data-parallax="-0.05" data-parallax-max="40">
         <span class="eyebrow">IT Consultant &amp; IT Contractor</span>
         <h1>Smart, reliable <span class="accent">IT</span> that grows with your business.</h1>
         <p class="lead">
@@ -142,14 +142,14 @@
           no-nonsense approach.
         </p>
         <div class="hero-cta">
-          <a href="https://wa.me/6282112077181" target="_blank" rel="noopener" class="btn btn-primary">
+          <a href="https://wa.me/6282112077181?text=Hi%20CRS%20Net%2C%20I%27d%20like%20to%20talk%20about%20an%20IT%20project." target="_blank" rel="noopener" class="btn btn-wa">
             <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.02h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.16 8.16 0 0 1-1.26-4.36c0-4.54 3.7-8.23 8.24-8.23 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.7 8.23-8.24 8.23zm4.52-6.16c-.25-.13-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.13-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.47c-.16 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.13.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.47-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.16-.48-.29z"/></svg>
             Chat on WhatsApp
           </a>
           <a href="#contact" class="btn btn-ghost">Contact us</a>
         </div>
         <div class="hero-meta">
-          <div><strong>13+</strong><span>years in IT &amp; engineering</span></div>
+          <div><strong data-count="13" data-suffix="+">13+</strong><span>years in IT &amp; engineering</span></div>
           <div><strong>SEA</strong><span>regional experience</span></div>
           <div><strong>24/7</strong><span>priority support</span></div>
         </div>
@@ -194,10 +194,10 @@
       </div>
 
       <div class="about-stats">
-        <div class="stat"><strong>13+</strong><span>years experience</span></div>
-        <div class="stat"><strong>8</strong><span>roles delivered</span></div>
-        <div class="stat"><strong>3</strong><span>languages supported</span></div>
-        <div class="stat"><strong>100%</strong><span>independent advice</span></div>
+        <div class="stat"><strong data-count="13" data-suffix="+">13+</strong><span>years experience</span></div>
+        <div class="stat"><strong data-count="8">8</strong><span>roles delivered</span></div>
+        <div class="stat"><strong data-count="3">3</strong><span>languages supported</span></div>
+        <div class="stat"><strong data-count="100" data-suffix="%">100%</strong><span>independent advice</span></div>
       </div>
     </div>
   </section>
@@ -260,7 +260,7 @@
           <div class="step"><span class="step-n">03</span><h3>Deliver</h3><p>Implement cleanly, with testing and documentation.</p></div>
           <div class="step"><span class="step-n">04</span><h3>Support</h3><p>Stay available so things keep running smoothly.</p></div>
         </div>
-        <div class="approach-3d" aria-hidden="true"></div>
+        <div class="approach-3d" data-parallax="0.1" data-parallax-max="60" aria-hidden="true"></div>
       </div>
     </div>
     <script type="module" src="/assets/js/3d-approach/main.js?v=20260907c"></script>
@@ -340,6 +340,27 @@
     <script type="module" src="/assets/js/3d-team/main.js?v=20260907c"></script>
   </section>
 
+  <!-- ===== WhatsApp-first CTA ===== -->
+  <section class="section cta-band" aria-labelledby="ctaTitle">
+    <div class="container">
+      <div class="cta-card">
+        <div class="cta-copy">
+          <span class="eyebrow">Start a conversation</span>
+          <h2 id="ctaTitle">Have a project in mind? Let's talk on WhatsApp.</h2>
+          <p>Tell us the goal — we'll come back with next steps, usually within the day. No forms, no obligation — just a straight conversation.</p>
+        </div>
+        <div class="cta-actions">
+          <a class="btn btn-wa btn-lg" href="https://wa.me/6282112077181?text=Hi%20CRS%20Net%2C%20I%27d%20like%20to%20talk%20about%20an%20IT%20project." target="_blank" rel="noopener">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.02h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.16 8.16 0 0 1-1.26-4.36c0-4.54 3.7-8.23 8.24-8.23 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.7 8.23-8.24 8.23zm4.52-6.16c-.25-.13-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.13-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.47c-.16 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.13.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.47-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.16-.48-.29z"/></svg>
+            Chat on WhatsApp
+          </a>
+          <a class="btn btn-ghost" href="mailto:crs.network@outlook.com">Or email crs.network@outlook.com</a>
+          <span class="cta-note">Direct line to the people who do the work.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ===== Contact / CTA ===== -->
   <section class="section contact" id="contact">
     <div class="container contact-inner">
@@ -410,11 +431,12 @@
   </footer>
 
   <!-- ===== Floating WhatsApp (mobile-first quick contact) ===== -->
-  <a class="wa-fab" href="https://wa.me/6282112077181" target="_blank" rel="noopener" aria-label="Chat with CRS Net on WhatsApp">
+  <a class="wa-fab" href="https://wa.me/6282112077181?text=Hi%20CRS%20Net%2C%20I%27d%20like%20to%20talk%20about%20an%20IT%20project." target="_blank" rel="noopener" aria-label="Chat with CRS Net on WhatsApp">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.02h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.16 8.16 0 0 1-1.26-4.36c0-4.54 3.7-8.23 8.24-8.23 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.7 8.23-8.24 8.23zm4.52-6.16c-.25-.13-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.13-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.47c-.16 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.13.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.47-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.16-.48-.29z"/></svg>
     <span>WhatsApp</span>
   </a>
 
   <script src="/assets/js/script.js?v=20260902c" defer></script>
+  <script src="/assets/js/ui-effects.js?v=20260919a" defer></script>
 </body>
 </html>

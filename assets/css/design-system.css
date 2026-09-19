@@ -687,3 +687,200 @@ html.js .reveal.in { opacity: 1; transform: none; }
   .team-card, .team-card.is-tilting { transition: none; }
   .team-card::after { display: none; }
 }
+
+/* ============================================================
+   UI Effects layer (2026-09-19): glassmorphism surfaces, ambient
+   section glows, animated counters, light parallax, cursor FX and
+   the WhatsApp-first CTA band.
+   Appended last on purpose: selectors carry html[data-theme] so they
+   outrank the legacy styles.css theme overrides loaded earlier on
+   id.html at equal-specificity, later-cascade position.
+   ============================================================ */
+
+/* ---------- Glass + cursor tokens ---------- */
+:root {
+  --glass-bg: linear-gradient(160deg, rgba(255,255,255,.85), rgba(244,247,255,.55));
+  --glass-border: rgba(31,94,255,.16);
+  --glass-highlight: rgba(255,255,255,.7);
+  --glass-shadow: 0 14px 36px rgba(10,42,107,.10);
+  --cursor-dot: #1230c4;
+  --cursor-ring: rgba(31,94,255,.45);
+  --cursor-ring-hover: rgba(31,94,255,.85);
+  --cursor-fill: rgba(31,94,255,.10);
+  --cursor-glow: rgba(31,94,255,.13);
+}
+html[data-theme="dark"] {
+  --glass-bg: linear-gradient(160deg, rgba(22,41,68,.68), rgba(12,28,49,.45));
+  --glass-border: rgba(116,168,255,.28);
+  --glass-highlight: rgba(148,180,255,.18);
+  --glass-shadow: 0 16px 40px rgba(0,0,0,.42);
+  --cursor-dot: #74a8ff;
+  --cursor-ring: rgba(116,168,255,.45);
+  --cursor-ring-hover: rgba(116,168,255,.9);
+  --cursor-fill: rgba(116,168,255,.12);
+  --cursor-glow: rgba(77,130,255,.16);
+}
+
+/* ---------- Ambient section glows (give the frosted layers some depth
+   to blur; all pure background layers, zero layout impact) ---------- */
+html[data-theme] .section-alt {
+  background-color: var(--bg-alt);
+  background-image:
+    radial-gradient(720px 420px at 100% 0%, rgba(31,94,255,.07), transparent 62%),
+    radial-gradient(620px 380px at 0% 100%, rgba(0,194,224,.06), transparent 64%);
+}
+html[data-theme="dark"] .section-alt {
+  background-image:
+    radial-gradient(760px 440px at 100% 0%, rgba(77,130,255,.15), transparent 62%),
+    radial-gradient(640px 400px at 0% 100%, rgba(0,194,224,.11), transparent 64%);
+}
+html[data-theme] #services {
+  background-image: radial-gradient(760px 460px at 0% 4%, rgba(31,94,255,.06), transparent 62%);
+}
+html[data-theme="dark"] #services {
+  background-image: radial-gradient(760px 460px at 0% 4%, rgba(77,130,255,.10), transparent 62%);
+}
+html[data-theme] .contact {
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(760px 460px at 10% 0%, rgba(31,94,255,.09), transparent 60%),
+    radial-gradient(680px 420px at 90% 92%, rgba(0,194,224,.07), transparent 62%),
+    linear-gradient(180deg, var(--bg), var(--bg-alt));
+}
+
+/* ---------- Frosted glass surfaces ----------
+   Applied only when the browser supports backdrop-filter; otherwise the
+   original opaque styles stand (graceful no-blur fallback). */
+@supports ((backdrop-filter: blur(2px)) or (-webkit-backdrop-filter: blur(2px))) {
+  html[data-theme] :is(.card, .step, .stat, .exp-card, .contact-form, .cta-card) {
+    background: var(--glass-bg);
+    border-color: var(--glass-border);
+    box-shadow: var(--glass-shadow), inset 0 1px 0 var(--glass-highlight);
+    -webkit-backdrop-filter: blur(14px) saturate(150%);
+    backdrop-filter: blur(14px) saturate(150%);
+  }
+  /* Team cards keep their 3D tilt (transform-style: preserve-3d), so the
+     frost lives on a child layer — a backdrop-filter on the card itself
+     would flatten the tilt depth layers. */
+  html[data-theme] .team-card { background: var(--glass-bg); border-color: var(--glass-border); }
+  html[data-theme] .team-card::before {
+    content: ""; position: absolute; inset: 0; z-index: -1;
+    border-radius: inherit;
+    -webkit-backdrop-filter: blur(14px) saturate(150%);
+    backdrop-filter: blur(14px) saturate(150%);
+  }
+  /* Hover states restated: these rules outrank the earlier :hover ones. */
+  html[data-theme] .card:hover,
+  html[data-theme] .step:hover,
+  html[data-theme] .exp-card:hover,
+  html[data-theme] .team-card:hover {
+    border-color: var(--brand-line);
+    box-shadow: var(--shadow-md), inset 0 1px 0 var(--glass-highlight);
+  }
+}
+
+/* ---------- Animated counters: digits keep a fixed width ---------- */
+html[data-theme] :is(.stat strong, .hero-meta strong, .tr-item strong) {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- WhatsApp-first CTA band ---------- */
+.cta-band { padding: var(--space-10) 0; }
+.cta-card {
+  position: relative; overflow: hidden;
+  display: grid; grid-template-columns: 1.15fr .85fr; gap: var(--space-5);
+  align-items: center;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-md);
+  transition: background-color .35s var(--ease), border-color .35s var(--ease);
+}
+.cta-card::after {
+  content: ""; position: absolute; right: -120px; top: -140px;
+  width: 360px; height: 360px; border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, rgba(31,94,255,.20), rgba(0,194,224,.10) 55%, transparent 72%);
+  pointer-events: none;
+}
+.cta-copy { position: relative; z-index: 1; }
+.cta-copy h2 { font-size: clamp(1.5rem, 3vw, 2.1rem); }
+.cta-copy p { color: var(--slate); margin-bottom: 0; }
+.cta-actions { position: relative; z-index: 1; display: grid; justify-items: start; gap: var(--space-2); }
+.cta-note { font-size: .85rem; color: var(--muted); }
+@media (max-width: 920px) {
+  .cta-card { grid-template-columns: 1fr; padding: var(--space-4); gap: var(--space-3); }
+}
+@media (max-width: 520px) {
+  .cta-actions { justify-items: stretch; }
+  .cta-actions .btn { width: 100%; }
+}
+
+/* WhatsApp button variant (brand green) */
+.btn-wa { color: #fff; background: #1faa53; box-shadow: 0 8px 22px rgba(18,94,48,.35); }
+.btn-wa:hover { background: #23b95c; transform: translateY(-2px); box-shadow: 0 14px 30px rgba(18,94,48,.45); }
+.btn-wa:active { transform: translateY(0); box-shadow: 0 4px 12px rgba(18,94,48,.32); }
+.btn-lg { min-height: 56px; padding: 15px var(--space-4); font-size: 1.05rem; }
+.btn-wa .ico { width: 20px; height: 20px; }
+
+/* Soft attention pulse on the floating WhatsApp button */
+@media (prefers-reduced-motion: no-preference) {
+  .wa-fab::after {
+    content: ""; position: absolute; inset: 0; border-radius: inherit;
+    box-shadow: 0 0 0 0 rgba(31,170,83,.42);
+    animation: waPulse 3.4s var(--ease) infinite;
+    pointer-events: none;
+  }
+  @keyframes waPulse {
+    0%   { box-shadow: 0 0 0 0 rgba(31,170,83,.42); }
+    70%  { box-shadow: 0 0 0 16px rgba(31,170,83,0); }
+    100% { box-shadow: 0 0 0 0 rgba(31,170,83,0); }
+  }
+}
+
+/* ---------- Cursor FX (enabled by ui-effects.js on fine pointers) ---------- */
+.cursor-dot, .cursor-ring, .cursor-glow {
+  position: fixed; top: 0; left: 0;
+  pointer-events: none; opacity: 0;
+  border-radius: 50%;
+  transition: opacity .3s var(--ease);
+}
+.cursor-dot {
+  width: 6px; height: 6px; margin: -3px 0 0 -3px;
+  background: var(--cursor-dot); z-index: 9999;
+}
+.cursor-ring {
+  width: 34px; height: 34px; margin: -17px 0 0 -17px;
+  border: 1.5px solid var(--cursor-ring);
+  z-index: 9998;
+  transition: opacity .3s var(--ease), width .18s var(--ease), height .18s var(--ease),
+              margin .18s var(--ease), background-color .18s var(--ease),
+              border-color .18s var(--ease);
+}
+.cursor-ring.is-hover {
+  width: 58px; height: 58px; margin: -29px 0 0 -29px;
+  background: var(--cursor-fill); border-color: var(--cursor-ring-hover);
+}
+.cursor-ring.is-down { width: 26px; height: 26px; margin: -13px 0 0 -13px; }
+.cursor-glow {
+  width: 260px; height: 260px; margin: -130px 0 0 -130px;
+  background: radial-gradient(circle, var(--cursor-glow), transparent 65%);
+  z-index: 9997;
+}
+html.cursor-fx .cursor-dot, html.cursor-fx .cursor-ring, html.cursor-fx .cursor-glow { opacity: 1; }
+html.cursor-fx.cursor-off .cursor-dot, html.cursor-fx.cursor-off .cursor-ring,
+html.cursor-fx.cursor-off .cursor-glow,
+html.cursor-fx.cursor-text .cursor-dot, html.cursor-fx.cursor-text .cursor-ring,
+html.cursor-fx.cursor-text .cursor-glow { opacity: 0; }
+html.cursor-fx body,
+html.cursor-fx :is(a, button, summary, [role="button"], label) { cursor: none; }
+html.cursor-fx :is(input, textarea, select) { cursor: auto; }
+
+/* ---------- Effect-safe motion / pointer resets ---------- */
+@media (hover: none) {
+  html[data-theme] .btn-wa:hover { transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html[data-theme] .btn-wa:hover { transform: none; }
+  .cursor-dot, .cursor-ring, .cursor-glow { display: none !important; }
+}
